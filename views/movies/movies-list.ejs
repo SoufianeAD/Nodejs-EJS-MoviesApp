@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body class="bg-secondary">
+<%- include('../includes/navigation')%>
+<div class="container mt-5 list-group mb-5">
+    <% if(movies.length == 0) {%>
+        <h1>There is no Movies to show !</h1>
+    <% } else { %>
+            <% for (m of movies) {%>
+               <li class="list-group-item">
+                   <div class="row">
+                       <div class="col-2">
+                           <img class="card-img-top" style="width: 95%; height: 95%;" src="<%= m.imgUrl %>" alt="Card image cap">
+                       </div>
+                       <div class="col">
+                           <h5 class="card-title"><%= m.title %></h5>
+                           <p class="card-text">Ratings : <%= m.overView %></p>
+                           <p class="card-text">Ratings : <%= m.ratings %>%</p>
+                           <a href="/admin/delete-movie/<%= m.id %>" class="btn btn-danger float-right ml-2">delete</a>
+                           <a href="/admin/edit-movie/<%= m.id %>" class="btn btn-primary float-right">Edit</a>
+                       </div>
+                   </div>
+               </li>
+            <% } %>
+    <% } %>
+</div>
+</body>

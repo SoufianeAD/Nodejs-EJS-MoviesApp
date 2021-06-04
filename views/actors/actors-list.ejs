@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body class="bg-secondary">
+<%- include('../includes/navigation')%>
+<div class="container mt-5 list-group mb-5">
+    <% if(actors.length == 0) {%>
+        <h1>There is no Actors to show !</h1>
+    <% } else { %>
+        <% for (a of actors) {%>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="card-img-top" style="width: 80%; height: 85%;" src="<%= a.imgUrl %>" alt="Card image cap">
+                    </div>
+                    <div class="col p-2">
+                        <h5 class="card-title">First Name : <%= a.firstName %></h5>
+                        <h5 class="card-title">Last Name : <%= a.lastName %></h5>
+                        <h5 class="card-text">Date Of Birth : <%= a.dateOfBirth %></h5>
+                        <h5 class="card-text">Known As : <%= a.knownAs %></h5>
+                        <a href="/admin/delete-actor/<%= a.id %>" class="btn btn-danger float-right ml-2">delete</a>
+                        <a href="/admin/edit-actor/<%= a.id %>" class="btn btn-primary float-right">Edit</a>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+    <% } %>
+</div>
+</body>

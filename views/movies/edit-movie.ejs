@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body>
+<%- include('../includes/navigation')%>
+<div class="container p-5 mt-4 border">
+    <form action="/admin/post-edit-movie/<%= movie.id %>" method="POST">
+        <div class="header">
+            <h3>Add Movie</h3>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title" value="<%= movie.title%>"/>
+        </div>
+
+        <div class="form-group">
+            <label for="ratings">Ratings</label>
+            <input type="number" class="form-control" name="ratings" id="ratings" value="<%= movie.ratings%>"/>
+        </div>
+
+        <div class="form-group">
+            <label for="publishDate">Publish date</label>
+            <input type="text" class="form-control" name="publishDate" id="publishDate"
+                   value="<%= movie.publishDate.getFullYear() + '/' + movie.publishDate.getMonth() + '/' + movie.publishDate.getDate()%>"/>
+        </div>
+
+        <div class="form-group">
+            <label for="imgUrl">Image URL</label>
+            <input type="text" class="form-control" name="imgUrl" id="imgUrl" value="<%= movie.imgUrl%>"/>
+        </div>
+
+        <div class="form-group">
+            <label for="videoUrl">Video URL</label>
+            <input type="text" class="form-control" name="videoUrl" id="videoUrl" value="<%= movie.videoUrl%>"/>
+        </div>
+
+        <div class="form-group">
+            <label for="overView">Over View</label>
+            <textarea class="form-control" name="overView" id="overView" rows="3"><%= movie.overView%></textarea>
+        </div>
+
+        <div class="text-right mt-5">
+            <button type="submit" class="btn btn-success">Edit movie</button>
+        </div>
+    </form>
+</div>
+</body>

@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body class="bg-secondary">
+    <%- include('../includes/navigation')%>
+    <div class="container mt-5 mb-5 card-group">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="<%= movie.videoUrl %>" allowfullscreen></iframe>
+        </div>
+
+        <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text"><%= movie.overView %></p>
+        </div>
+
+        <%if(movie.actors.length > 0) {%>
+            <div class="row flex-row flex-nowrap bg-light p-2" style="overflow-x: auto;">
+                <%for (a of movie.actors) {%>
+                    <div class="col-3 mt-2">
+                        <img class="" style="width: 80%; height: 85%;" src="<%= a.imgUrl %>" alt="Card image cap">
+                        <h5>
+                            <%= a.firstName%>  <%= a.lastName%>
+                        </h5>
+                    </div>
+                <%}%>
+            </div>
+        <%}%>
+
+    </div>
+</body>

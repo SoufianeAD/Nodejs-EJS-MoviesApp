@@ -1,0 +1,82 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body >
+<%- include('../includes/navigation')%>
+<div class="container p-5 mt-4 mb-4 border">
+    <div class="row">
+        <div class="col-4">
+            <img src="<%= a.imgUrl %>"
+                 class="rounded" style="max-width: 300px; max-height: 600px;" id="actor"/>
+        </div>
+        <div class="col-8">
+            <form action="/admin/post-edit-actor/<%= a.id%>" method="POST">
+                <div class="header">
+                    <h3>Edit Actor</h3>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" value="<%= a.firstName %>"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">LastName</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" value="<%= a.lastName %>"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateOfBirth">Date Of Birth</label>
+                    <input type="text" class="form-control" name="dateOfBirth" id="dateOfBirth" value="<%= a.dateOfBirth %>"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="imgUrl">Image URL</label>
+                    <input type="text" class="form-control" name="imgUrl" id="imgUrl" onkeyup="updatePicture()" value="<%= a.imgUrl %>"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="knownAs">Known As</label>
+                    <input type="text" class="form-control" name="knownAs" id="knownAs" value="<%= a.knownAs %>"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="movies">Movies</label>
+
+                </div>
+
+                <div class="row flex-row flex-nowrap bg-light p-3"  style="overflow-x: auto;">
+                    <%for (m of movies) {%>
+                        <div class="col-3 mt-2">
+                            <div class="card" >
+                                <img class="card-img-top" src="<%= m.imgUrl %>" alt="Card image cap"><div class="card-body">
+                                    <h6 class="card-title" style="height: 50px;"><%= m.title%></h6>
+                                    <% if(!idsActorMovies.includes(m.id)) {%>
+                                        <a href="/admin/add-actor-movie/<%= a.id %>/<%= m.id %>" class="card-link text-success">Add</a>
+                                    <%} else {%>
+                                        <a href="/admin/delete-actor-movie/<%= a.id %>/<%= m.id %>" class="card-link text-danger">delete</a>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+
+                </div>
+
+                <div class="text-right mt-5">
+                    <button type="submit" class="btn btn-success">Edit Actor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type ="text/javascript">
+    function updatePicture() {
+        var url = document.getElementById("imgUrl").value;
+        var img = document.getElementById("actor");
+        img.src = url;
+        img.onerror = function () {
+            img.src = "https://www.redanglagoon.com/notfound.png";
+        }
+    }
+</script>

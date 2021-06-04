@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body class="bg-secondary">
+    <%- include('../includes/navigation')%>
+    <div class="container mt-5 card-group">
+        <% if(movies.length == 0) {%>
+            <h1>There is no Movies to show !</h1>
+        <% } else { %>
+        <div class="row">
+            <% for (m of movies) {%>
+                <div class="col-md-4">
+                    <a href="/movie-details/<%= m.id %>" class="btn text-left">
+                        <div class="card m-1 border-dark bg-dark">
+                            <img class="card-img-top" src="<%= m.imgUrl %>" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-light"><%= m.title %></h5>
+                                <p class="card-text text-light">Ratings : <%= m.ratings %>%</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        <% } %>
+        </div>
+        <% } %>
+    </div>
+</body>

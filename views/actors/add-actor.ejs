@@ -1,0 +1,80 @@
+<%- include('../includes/head.ejs')%>
+</head>
+<body>
+<%- include('../includes/navigation')%>
+<div class="container p-5 mt-4 border">
+    <div class="row">
+        <div class="col-4">
+            <img src="https://www1.specialolympicsontario.com/wp-content/uploads/2017/01/Insert-Photo-Here.jpg"
+                 class="rounded" style="max-width: 300px; max-height: 600px;" id="actor"/>
+        </div>
+        <div class="col-8">
+            <form action="/post-actor" method="POST">
+                <div class="header">
+                    <h3>Add Actor</h3>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">LastName</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateOfBirth">Date Of Birth</label>
+                    <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="imgUrl">Image URL</label>
+                    <input type="text" class="form-control" name="imgUrl" id="imgUrl" onkeyup="updatePicture()"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="knownAs">Known As</label>
+                    <input type="text" class="form-control" name="knownAs" id="knownAs"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="movies">Movies</label>
+
+                </div>
+
+                <div class="list-group checkbox-list-group">
+
+                    <%for (m of movies) {%>
+                        <div class="list-group-item">
+                            &nbsp;
+                            <label>
+                                <input type="checkbox" value="<%= m.id%>" name="option"/>
+                                <span class="list-group-item-text">
+                                    <i class="fa fa-fw"/>
+                                    <%= m.title%>
+                                </span>
+                            </label>
+                        </div>
+                    <%}%>
+                </div>
+
+                <div class="text-right mt-5">
+                    <button type="submit" class="btn btn-success">Add Actor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type ="text/javascript">
+    function updatePicture() {
+        var url = document.getElementById("imgUrl").value;
+        var img = document.getElementById("actor");
+        img.src = url;
+        img.onerror = function () {
+            img.src = "https://www.redanglagoon.com/notfound.png";
+        }
+    }
+</script>
